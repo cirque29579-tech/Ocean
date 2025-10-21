@@ -1,15 +1,13 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  /* Copyright 10/21/2005 Anthony Castelli *
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="format-detection" content="telephone=no">
-
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Careers based on strengths — Big Five (OCEAN)</title>
+<title>Student Career Assessment — OCEAN (Big Five)</title>
 <style>
 :root{--page-bg:#f6f7fb;--card:#ffffff;--muted:#6b7280;--accent:#335d9f;--accent2:#2f9d6e;--border:#e6eef8;--paper-margin:20mm;}
 html,body{height:100%;margin:0;background:var(--page-bg);font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;}
@@ -19,48 +17,58 @@ html,body{height:100%;margin:0;background:var(--page-bg);font-family:Inter,syste
 .brand{font-family:'Merriweather',serif;font-size:1.45rem;color:var(--accent);font-weight:700;}
 .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:0.95rem;}
 .meta input{border:none;border-bottom:1px dashed #e6eef8;background:transparent;padding:4px 6px;font-size:0.95rem}
-#progress{font-weight:600;color:var(--muted);text-align:center;margin-bottom:12px}
+
+/* progress is at the bottom of the question page */
+#progress{font-weight:700;color:var(--muted);text-align:center;margin:10px 0 6px}
+
+/* Questions */
 #questions{margin-top:8px}
 .q{border-radius:10px;background:#fbfeff;padding:12px;margin:12px 0;border:1px solid var(--border)}
 .q p{margin:0 0 8px;font-weight:700;color:#0f172a}
 .opts{display:flex;gap:12px;flex-wrap:wrap}
-.opt{flex:1 1 240px;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.04);cursor:pointer;background:transparent;display:flex;align-items:flex-start;gap:8px;transition:background 0.2s}
+.opt{flex:1 1 240px;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.07);cursor:pointer;background:transparent;display:flex;align-items:flex-start;gap:8px;transition:background 0.2s}
 .opt input{margin-top:4px}
 .opt.selected{background:#e8f5e8;border-color:var(--accent2);}
-.actions{display:flex;gap:10px;justify-content:center;margin-top:14px}
-button.btn{background:var(--accent);color:white;border:0;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer}
-button.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--muted)}
-.small{padding:8px 10px;font-size:.95rem}
-#results{display:none;margin-top:18px}
-.report-header{display:flex;justify-content:center;align-items:center; flex-direction: column; text-align: center;}
-.type-box {border:2px solid var(--accent);border-radius:14px;padding:22px;background:#fff;margin-bottom:12px;width:100%;max-width:560px;box-shadow:0 6px 16px rgba(0,0,0,0.08);}
-.type-box .type {font-family:'Merriweather',serif;font-size:2.2rem;font-weight:800;color:var(--accent);margin:0 0 6px;letter-spacing:1.5px;text-transform:uppercase;}
-.type-box .title {font-family:'Merriweather',serif;font-size:1.15rem;color:#0b2540;margin:0;font-weight:700;}
-.report-sub{color:#2b3a55;margin:6px 0 0 0; font-size:1.02rem; font-weight:700;}
-.report-block{padding:14px;border-radius:8px;background:#fbfdff;border:1px solid var(--border);margin-top:12px}
-.section-title{font-family:'Merriweather',serif;color:var(--accent);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid rgba(0,0,0,0.03)}
 
-/* ===== Domain sections with headings ===== */
+/* Buttons */
+.actions{display:flex;gap:10px;justify-content:center;margin-top:14px;position:relative}
+button.btn{background:var(--accent);color:white;border:0;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer}
+button.ghost{background:transparent;border:1px solid rgba(15,23,42,0.12);color:#0f172a}
+.small{padding:8px 10px;font-size:.95rem}
+
+/* Results layout */
+#results{display:none;margin-top:18px}
+.report-header{display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;}
+.type-box{border:2px solid var(--accent);border-radius:14px;padding:22px;background:#fff;margin-bottom:12px;width:100%;max-width:560px;box-shadow:0 6px 16px rgba(0,0,0,0.08);}
+.type-box .type{font-family:'Merriweather',serif;font-size:2.2rem;font-weight:800;color:var(--accent);margin:0 0 6px;letter-spacing:1.5px;text-transform:uppercase;}
+.type-box .title{font-family:'Merriweather',serif;font-size:1.15rem;color:#0b2540;margin:0;font-weight:700;}
+.report-sub{color:#2b3a55;margin:6px 0 0 0;font-size:1.02rem;font-weight:700;}
+
+.section-title{font-family:'Merriweather',serif;color:var(--accent);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid rgba(0,0,0,0.03)}
+.report-block{padding:14px;border-radius:8px;background:#fbfdff;border:1px solid var(--border);margin-top:12px}
+
 .domain{margin-top:18px;}
 .domain h3{margin:0;color:#275ea8;text-align:center;font-weight:800;letter-spacing:.2px}
-.domain p.domain-desc{margin:6px auto 8px; max-width:780px; text-align:center; color:#475569}
+.domain p.domain-desc{margin:6px auto 8px;max-width:780px;text-align:center;color:#475569}
 
-/* ===== Pair boxes ===== */
+/* Trait pair grid */
 .trait-pairs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;}
 .trait-box{padding:14px;border:1.5px solid #e6eef8;border-radius:12px;background:#ffffff;box-shadow:0 2px 10px rgba(20,30,60,.05);}
-/* Use the same bold style as "Who you are:" (strong) */
-.trait-box .heading{font-weight:700;color:#0f172a;margin:0 0 6px;font-size:1.04rem;}
-.trait-box .pct{font-weight:700;color:#0f172a;margin-left:6px;}
+.trait-box .heading{font-weight:800;color:#0f172a;margin:0 0 6px;font-size:1.04rem;}
+.trait-box .pct{font-weight:800;color:#0f172a;margin-left:6px;}
 .trait-box .desc{margin:0;color:#475569;}
 .trait-box.dominant{background:#e8f5e8;border-color:var(--accent2);}
 .trait-box.dominant .heading{color:#0b3b2a;}
 .trait-box.dominant .desc{font-weight:600;color:#0b3b2a;}
 
+/* Careers table */
 .careers-table{width:100%;border-collapse:collapse;margin-top:10px;}
 .careers-table th,.careers-table td{border:1px solid var(--border);padding:8px;text-align:left;}
 .careers-table th{background:var(--accent);color:#fff;font-weight:bold;}
 .careers-table tr:nth-child(even){background:#f8f9fa;}
 .salary-note{color:var(--muted);font-size:0.85rem;margin-top:8px;}
+
+/* Print */
 .print-header{font-family:'Merriweather',serif;font-size:1.1rem;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:20px;padding-top:5mm;}
 #who ul{margin:8px 0 0 18px;padding:0;}
 #who li{margin:4px 0;}
@@ -75,111 +83,70 @@ button.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:v
   .q{padding:15px;margin:8px 0;border:1px solid #ccc;page-break-inside:avoid;}
   .opts{flex-direction:row;gap:15px;page-break-inside:avoid;}
   .report-block{margin:10px 0;page-break-inside:avoid;}
-  .type-box { border: 2px solid var(--accent); box-shadow: none; }
+  .type-box{border:2px solid var(--accent);box-shadow:none;}
   @page { margin-top: 20mm; }
-  .careers-table { width: 100%; }
 
-  /* --- Prevent awkward page breaks in Results --- */
-  .report-header, .type-box, .report-sub { break-inside: avoid-page; page-break-inside: avoid; break-after: avoid-page; }
-  .domain { break-inside: avoid-page; page-break-inside: avoid; break-before: avoid-page; }
-  .domain h3, .domain p.domain-desc { break-after: avoid-page; page-break-after: avoid; }
-  .trait-pairs { break-inside: avoid-page; page-break-inside: avoid; }
-  .trait-box { break-inside: avoid-page; page-break-inside: avoid; -webkit-region-break-inside: avoid; -webkit-column-break-inside: avoid; }
-  .report-block { break-inside: avoid-page; page-break-inside: avoid; }
-
+  .report-header,.type-box,.report-sub{break-inside:avoid-page;page-break-inside:avoid;break-after:avoid-page;}
+  .domain{break-inside:avoid-page;page-break-inside:avoid;break-before:avoid-page;}
+  .domain h3,.domain p.domain-desc{break-after:avoid-page;page-break-after:avoid;}
+  .trait-pairs{break-inside:avoid-page;page-break-inside:avoid;}
+  .trait-box{break-inside:avoid-page;page-break-inside:avoid;-webkit-column-break-inside:avoid;}
+  .report-block{break-inside:avoid-page;page-break-inside:avoid;}
 }
 @media (max-width:720px){
   .opts{flex-direction:column}
   .trait-pairs{grid-template-columns:1fr;}
 }
 
-/* --- iPhone/mobile ergonomics --- */
-html, body {
-  -webkit-text-size-adjust: 100%;
-  touch-action: manipulation;
-  overscroll-behavior-y: contain;
-}
+/* Mobile ergonomics */
+html,body{-webkit-text-size-adjust:100%;touch-action:manipulation;overscroll-behavior-y:contain;}
+input,select,textarea,button{font-size:16px;-webkit-tap-highlight-color:transparent;}
+.container{max-width:100%;margin:0;padding:12px 16px calc(16px + env(safe-area-inset-bottom));}
 
-input, select, textarea, button {
-  font-size: 16px;
-  -webkit-tap-highlight-color: transparent;
-}
+@media (max-width:420px){
+  .header-row{flex-direction:column;align-items:flex-start;gap:8px;}
+  .brand{font-size:1.25rem;}
+  .meta{flex-wrap:wrap;gap:6px;font-size:.95rem;}
+  .meta input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);}
 
-.container {
-  max-width: 100%;
-  margin: 0;
-  padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
-}
+  .card{border-radius:10px;padding:16px;box-shadow:0 6px 22px rgba(20,30,60,.06);}
 
-/* Make header stack nicely and inputs fit small screens */
-@media (max-width: 420px) {
-  .header-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .brand { font-size: 1.25rem; }
-  .meta { flex-wrap: wrap; gap: 6px; font-size: .95rem; }
-  .meta input { width: 100%; padding: 10px 12px; border-radius: 8px; border:1px solid var(--border); }
-
-  .card { border-radius: 10px; padding: 16px; box-shadow: 0 6px 22px rgba(20,30,60,.06); }
-
-  /* Progress bar fixed at the top for context while scrolling */
-  #progress {
-    position: sticky; top: env(safe-area-inset-top); z-index: 5;
-    background: var(--page-bg); padding: 8px 0; margin: 0 0 8px;
-    border-bottom: 1px solid var(--border);
+  /* progress sticks near the bottom on phones */
+  #progress{
+    position:sticky;bottom:calc(56px + env(safe-area-inset-bottom));
+    background:var(--page-bg);padding:6px 0;margin:0 0 6px;border-top:1px solid var(--border);z-index:5;
   }
 
-  /* Question blocks breathe but keep compact */
-  .q { padding: 12px; margin: 10px 0; }
+  .q{padding:12px;margin:10px 0;}
+  .opts{flex-direction:column;gap:10px;}
+  .opt{flex:1 1 auto;padding:12px;gap:10px;border-radius:10px;}
+  .opt input[type=radio]{width:22px;height:22px;accent-color:var(--accent2);}
 
-  /* Options: full-width, large tap targets */
-  .opts { flex-direction: column; gap: 10px; }
-  .opt { flex: 1 1 auto; padding: 12px; gap: 10px; border-radius: 10px; }
-  .opt input[type=radio] { width: 22px; height: 22px; accent-color: var(--accent2); }
-
-  /* Primary actions: thumb-friendly, stick to bottom */
-  .actions { position: sticky; bottom: 0; z-index: 10; justify-content: stretch; }
-  .actions::before {
-    content: ""; position: absolute; inset: -14px -16px auto -16px;
-    background: linear-gradient(to top, rgba(246,247,251,.95), rgba(246,247,251,0));
-    pointer-events: none;
+  .actions{position:sticky;bottom:0;z-index:10;justify-content:stretch;}
+  .actions::before{
+    content:"";position:absolute;inset:-14px -16px auto -16px;
+    background:linear-gradient(to top, rgba(246,247,251,.95), rgba(246,247,251,0));pointer-events:none;
   }
-  button.btn, button.ghost {
-    width: 100%; height: 48px; border-radius: 12px; font-weight: 800;
-  }
-  .small { height: 44px; }
+  button.btn,button.ghost{width:100%;height:48px;border-radius:12px;font-weight:800;}
+  .small{height:44px;}
 
-  /* Results typography scales gracefully on small screens */
-  .type-box { padding: 16px; max-width: 100%; }
-  .type-box .type { font-size: clamp(1.3rem, 5.5vw, 2rem); letter-spacing: .5px; }
-  .type-box .title { font-size: clamp(.95rem, 4vw, 1.05rem); }
-  .report-sub { font-size: .98rem; }
+  .type-box{padding:16px;max-width:100%;}
+  .type-box .type{font-size:clamp(1.3rem,5.5vw,2rem);letter-spacing:.5px;}
+  .type-box .title{font-size:clamp(.95rem,4vw,1.05rem);}
+  .report-sub{font-size:.98rem;}
 
-  .domain h3 { font-size: 1.05rem; }
-  .domain p.domain-desc { font-size: .95rem; padding: 0 2px; }
+  .domain h3{font-size:1.05rem;}
+  .domain p.domain-desc{font-size:.95rem;padding:0 2px;}
 
-  /* Pairs already collapse at <=720px; tighten spacing on phones */
-  .trait-pairs { gap: 10px; }
-  .trait-box { padding: 12px; }
+  .trait-pairs{gap:10px;}
+  .trait-box{padding:12px;}
 
-  /* Make the careers table scroll instead of squishing */
-  .careers-table {
-    display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
-    border: 1px solid var(--border);
-  }
-  .careers-table table, .careers-table thead, .careers-table tbody, .careers-table tr, .careers-table th, .careers-table td { display: revert; }
-  .careers-table th, .careers-table td { white-space: nowrap; }
+  .careers-table{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);}
+  .careers-table th,.careers-table td{white-space:nowrap;}
 
-  /* Post-Results actions at bottom with safe-area padding */
-  #postActions {
-    position: sticky; bottom: 0; padding-bottom: env(safe-area-inset-bottom);
-    gap: 8px; margin-top: 10px;
-  }
+  #postActions{position:sticky;bottom:0;padding-bottom:env(safe-area-inset-bottom);gap:8px;margin-top:10px;}
 }
-
-/* Slightly larger radios on all small-ish screens */
-@media (max-width: 720px) {
-  .opt input[type=radio] { width: 22px; height: 22px; }
-}
-
+@media (max-width:720px){.opt input[type=radio]{width:22px;height:22px;}}
 </style>
 </head>
 <body>
@@ -188,16 +155,20 @@ input, select, textarea, button {
     <div class="header-row">
       <div>
         <div class="brand">Student Career Assessment</div>
-        <div style="color:var(--muted);font-size:0.95rem"><span id="subtitleCount">40</span>-question “Big Five” (OCEAN) — printable report</div>
+        <div style="color:var(--muted);font-size:0.95rem">
+          <span id="subtitleCount">40</span>-question “Big Five” (OCEAN) — printable report
+        </div>
       </div>
-      <div class="meta">Student: <input id="studentName" placeholder="(Student name)" /> Date: <input id="reportDate" /></div>
+      <div class="meta">Student: <input id="studentName" placeholder="(Student name)"/> Date: <input id="reportDate"/></div>
     </div>
-
-    <div id="progress">Question 1 of 40</div>
 
     <section id="questions-section">
       <form id="quizForm">
         <div id="questions"></div>
+
+        <!-- Bottom progress counter -->
+        <div id="progress" aria-live="polite">Answered 0 of 40</div>
+
         <div class="actions">
           <button type="button" id="seeResults" class="btn">See Results</button>
         </div>
@@ -218,83 +189,49 @@ input, select, textarea, button {
         <p class="report-sub" id="summaryLead"></p>
       </div>
 
-      <!-- ====== DOMAIN 1: OPENNESS ====== -->
+      <!-- Domains -->
       <div class="domain">
         <h3>Openness to Experience</h3>
-        <p class="domain-desc">This trait reflects imagination, curiosity, and openness to new ideas, experiences, and emotions.</p>
+        <p class="domain-desc">Imagination, curiosity, and openness to new ideas.</p>
         <div class="trait-pairs">
-          <div class="trait-box" id="boxClosed">
-            <p class="heading">Closed <span class="pct" id="pctClosed">--%</span></p>
-            <p class="desc">Practical, routine-oriented, prefers familiar methods.</p>
-          </div>
-          <div class="trait-box" id="boxOpen">
-            <p class="heading">Open <span class="pct" id="pctOpen">--%</span></p>
-            <p class="desc">Curious, imaginative, enjoys new ideas and experiences.</p>
-          </div>
+          <div class="trait-box" id="boxClosed"><p class="heading">Closed <span class="pct" id="pctClosed">--%</span></p><p class="desc">Practical, routine-oriented.</p></div>
+          <div class="trait-box" id="boxOpen"><p class="heading">Open <span class="pct" id="pctOpen">--%</span></p><p class="desc">Curious, imaginative.</p></div>
         </div>
       </div>
 
-      <!-- ====== DOMAIN 2: CONSCIENTIOUSNESS ====== -->
       <div class="domain">
         <h3>Conscientiousness</h3>
-        <p class="domain-desc">This measures organization, responsibility, and goal‑directed behavior.</p>
+        <p class="domain-desc">Organization, responsibility, goal-directed behavior.</p>
         <div class="trait-pairs">
-          <div class="trait-box" id="boxSpont">
-            <p class="heading">Spontaneous <span class="pct" id="pctSpont">--%</span></p>
-            <p class="desc">Flexible, improvises, comfortable with changing plans.</p>
-          </div>
-          <div class="trait-box" id="boxConsci">
-            <p class="heading">Conscientious <span class="pct" id="pctConsci">--%</span></p>
-            <p class="desc">Organized, responsible, and goal-oriented.</p>
-          </div>
+          <div class="trait-box" id="boxSpont"><p class="heading">Spontaneous <span class="pct" id="pctSpont">--%</span></p><p class="desc">Flexible, improvises.</p></div>
+          <div class="trait-box" id="boxConsci"><p class="heading">Conscientious <span class="pct" id="pctConsci">--%</span></p><p class="desc">Organized, dependable.</p></div>
         </div>
       </div>
 
-      <!-- ====== DOMAIN 3: EXTRAVERSION ====== -->
       <div class="domain">
         <h3>Extraversion</h3>
-        <p class="domain-desc">This trait involves sociability, energy from social interactions, and assertiveness.</p>
+        <p class="domain-desc">Sociability, energy from groups, assertiveness.</p>
         <div class="trait-pairs">
-          <div class="trait-box" id="boxIntro">
-            <p class="heading">Introvert <span class="pct" id="pctIntro">--%</span></p>
-            <p class="desc">Reflective, recharges alone, prefers deep conversations.</p>
-          </div>
-          <div class="trait-box" id="boxExtra">
-            <p class="heading">Extravert <span class="pct" id="pctExtra">--%</span></p>
-            <p class="desc">Outgoing, energized by groups, speaks up readily.</p>
-          </div>
+          <div class="trait-box" id="boxIntro"><p class="heading">Introvert <span class="pct" id="pctIntro">--%</span></p><p class="desc">Reflective, recharges alone.</p></div>
+          <div class="trait-box" id="boxExtra"><p class="heading">Extravert <span class="pct" id="pctExtra">--%</span></p><p class="desc">Outgoing, energetic.</p></div>
         </div>
       </div>
 
-      <!-- ====== DOMAIN 4: AGREEABLENESS ====== -->
       <div class="domain">
         <h3>Agreeableness</h3>
-        <p class="domain-desc">This pertains to cooperation, empathy, and concern for others.</p>
+        <p class="domain-desc">Cooperation, empathy, concern for others.</p>
         <div class="trait-pairs">
-          <div class="trait-box" id="boxHostile">
-            <p class="heading">Hostile <span class="pct" id="pctHostile">--%</span></p>
-            <p class="desc">Blunt, competitive, prioritizes logic over harmony.</p>
-          </div>
-          <div class="trait-box" id="boxAgree">
-            <p class="heading">Agreeable <span class="pct" id="pctAgree">--%</span></p>
-            <p class="desc">Cooperative, empathetic, aims for win–win outcomes.</p>
-          </div>
+          <div class="trait-box" id="boxHostile"><p class="heading">Hostile <span class="pct" id="pctHostile">--%</span></p><p class="desc">Blunt, competitive.</p></div>
+          <div class="trait-box" id="boxAgree"><p class="heading">Agreeable <span class="pct" id="pctAgree">--%</span></p><p class="desc">Cooperative, empathetic.</p></div>
         </div>
       </div>
 
-      <!-- ====== DOMAIN 5: NEUROTICISM ====== -->
       <div class="domain">
         <h3>Neuroticism</h3>
-        <p class="domain-desc">This trait captures emotional stability and tendency toward negative emotions.</p>
+        <p class="domain-desc">Emotional stability vs sensitivity.</p>
         <div class="trait-pairs">
-          <div class="trait-box" id="boxStable">
-            <p class="heading">Stable <span class="pct" id="pctStable">--%</span></p>
-            <p class="desc">Calm under pressure, steady mood, resilient.</p>
-          </div>
-          <div class="trait-box" id="boxNeuro">
-            <p class="heading">Neurotic <span class="pct" id="pctNeuro">--%</span></p>
-            <p class="desc">Emotionally sensitive, worries easily, stress-reactive.</p>
-          </div>
+          <div class="trait-box" id="boxStable"><p class="heading">Stable <span class="pct" id="pctStable">--%</span></p><p class="desc">Calm under pressure.</p></div>
+          <div class="trait-box" id="boxNeuro"><p class="heading">Neurotic <span class="pct" id="pctNeuro">--%</span></p><p class="desc">Worries easily.</p></div>
         </div>
       </div>
 
@@ -311,7 +248,7 @@ input, select, textarea, button {
           <thead><tr><th>Career Match</th><th>Reason for Fit</th><th>Annual Salary Range</th></tr></thead>
           <tbody id="careers-tbody"></tbody>
         </table>
-        <p class="salary-note">*Salary ranges are typical U.S. estimates; local markets vary.</p>
+        <p class="salary-note">*Typical U.S. ranges; local markets vary.</p>
       </div>
 
       <div class="report-block">
@@ -323,15 +260,16 @@ input, select, textarea, button {
     <div class="actions" id="postActions" style="display:none;margin-top:14px">
       <button id="savePdf" class="btn">Save Results (PDF)</button>
       <button id="reviewQuestions" class="ghost small">Review Questions</button>
+      <button id="exitApp" class="ghost small" title="Clear and Close">Exit</button>
     </div>
   </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // 40 total: 8 per trait (O,C,E,A,N)
+  // ===== Questions (8 per trait = 40 total) =====
   const questions = [
-    // Openness (O)
+    // O
     {q:"You prefer classes that are…",a:[["creative and exploratory","O+"],["structured and by-the-book","O-"]]},
     {q:"When reading, you enjoy…",a:[["imaginative stories and ideas","O+"],["straightforward facts and how-tos","O-"]]},
     {q:"When solving a problem, you…",a:[["try unconventional approaches","O+"],["use tried-and-true methods","O-"]]},
@@ -340,8 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {q:"In science/history, you prefer…",a:[["big ideas and theories","O+"],["dates, facts, and specifics","O-"]]},
     {q:"Projects are more fun when…",a:[["you can design the concept","O+"],["there’s a clear template","O-"]]},
     {q:"You’d rather write…",a:[["a creative essay","O+"],["a factual report","O-"]]},
-
-    // Conscientiousness (C)
+    // C
     {q:"Your homework routine is…",a:[["planned with a checklist","C+"],["done when you feel like it","C-"]]},
     {q:"Your backpack/locker is…",a:[["organized","C+"],["organized ‘in your own way’","C-"]]},
     {q:"Before tests, you…",a:[["study steadily in advance","C+"],["cram close to the date","C-"]]},
@@ -350,8 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {q:"Group work makes you…",a:[["take on tasks and plan","C+"],["go with the flow","C-"]]},
     {q:"Deadlines feel best when…",a:[["met early","C+"],["met at the last minute","C-"]]},
     {q:"If you forget something, you…",a:[["build a system not to next time","C+"],["just hope it won’t happen again","C-"]]},
-    
-    // Extraversion (E)
+    // E
     {q:"On weekends, you’d rather…",a:[["be out with people","E+"],["recharge solo","E-"]]},
     {q:"In new groups, you…",a:[["start conversations","E+"],["wait for others to approach","E-"]]},
     {q:"Presenting to class feels…",a:[["energizing","E+"],["draining","E-"]]},
@@ -360,8 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {q:"Clubs or events are…",a:[["a fun way to connect","E+"],["something you choose carefully","E-"]]},
     {q:"Free time is best…",a:[["doing things together","E+"],["in quiet activities","E-"]]},
     {q:"At a party you…",a:[["mingle widely","E+"],["stick with a few","E-"]]},
-    
-    // Agreeableness (A)
+    // A
     {q:"When teammates disagree, you…",a:[["find a compromise","A+"],["push for the best idea","A-"]]},
     {q:"Giving feedback, you’re…",a:[["gentle and encouraging","A+"],["direct and candid","A-"]]},
     {q:"Helping others feels…",a:[["very rewarding","A+"],["nice, when convenient","A-"]]},
@@ -370,8 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {q:"With group rules, you…",a:[["follow to support the team","A+"],["challenge if inefficient","A-"]]},
     {q:"Volunteering your time is…",a:[["important to you","A+"],["something you do sometimes","A-"]]},
     {q:"When friends are upset, you…",a:[["comfort them first","A+"],["offer solutions first","A-"]]},
-    
-    // Neuroticism (N)
+    // N
     {q:"Before big tests, you feel…",a:[["very nervous","N+"],["calm enough","N-"]]},
     {q:"When plans change, you…",a:[["stress for a while","N+"],["adapt quickly","N-"]]},
     {q:"Criticism makes you…",a:[["take it to heart","N+"],["use it and move on","N-"]]},
@@ -382,100 +316,148 @@ document.addEventListener('DOMContentLoaded', () => {
     {q:"If you make a mistake, you…",a:[["think about it a lot","N+"],["learn and move on","N-"]]}
   ];
 
+  // ===== Render Questions =====
   const qContainer = document.getElementById('questions');
-  document.getElementById('subtitleCount').textContent = questions.length.toString();
-  document.getElementById('progress').textContent = `Question 1 of ${questions.length}`;
+  const total = questions.length;
+  document.getElementById('subtitleCount').textContent = total.toString();
 
-  // Render all questions
-  let qHtml = "";
-  questions.forEach((obj, i) => {
-    qHtml += `<div class="q"><p>${i+1}. ${obj.q}</p><div class="opts">`;
-    obj.a.forEach((pair, ix) => {
-      const id = `q${i}_${ix}`;
-      qHtml += `<label class="opt"><input type="radio" name="q${i}" value="${pair[1]}" id="${id}"><span>${pair[0]}</span></label>`;
+  let html = "";
+  questions.forEach((obj,i)=>{
+    html += `<div class="q"><p>${i+1}. ${obj.q}</p><div class="opts">`;
+    obj.a.forEach((pair,ix)=>{
+      const id=`q${i}_${ix}`;
+      html += `<label class="opt"><input type="radio" name="q${i}" value="${pair[1]}" id="${id}"><span>${pair[0]}</span></label>`;
     });
-    qHtml += "</div></div>";
+    html += `</div></div>`;
   });
-  qContainer.innerHTML = qHtml;
+  qContainer.innerHTML = html;
 
-  function refreshSelectionsAndProgress() {
-    const done = document.querySelectorAll('input[type=radio]:checked').length;
-    const total = questions.length;
-    const nextNum = Math.min(done + 1, total);
-    document.getElementById("progress").textContent = `Question ${nextNum} of ${total}`;
-    document.querySelectorAll('.opt').forEach(opt => opt.classList.remove('selected'));
-    document.querySelectorAll('input[type=radio]:checked').forEach(checked => {
-      const label = checked.closest('.opt');
-      if (label) label.classList.add('selected');
+  // ===== Live Progress (event delegation) =====
+  const progressEl = document.getElementById('progress');
+  function updateProgress(){
+    const done = qContainer.querySelectorAll('input[type=radio]:checked').length;
+    progressEl.textContent = `Answered ${done} of ${total}`;
+    // keep green highlight
+    qContainer.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+    qContainer.querySelectorAll('input[type=radio]:checked').forEach(inp=>{
+      const label = inp.closest('.opt'); if (label) label.classList.add('selected');
     });
   }
-  document.querySelectorAll("input[type=radio]").forEach(inp => inp.addEventListener("change", refreshSelectionsAndProgress));
+  qContainer.addEventListener('input', e=>{
+    if (e.target.matches('input[type=radio]')) updateProgress();
+  });
+  qContainer.addEventListener('change', e=>{
+    if (e.target.matches('input[type=radio]')) updateProgress();
+  });
+  updateProgress(); // initialize
 
-  function traitLabel(trait){return ({O:"Openness",C:"Conscientiousness",E:"Extraversion",A:"Agreeableness",N:"Neuroticism"})[trait];}
-
-  function sideWord(trait, pct){
+  // ===== Helpers =====
+  function traitLabel(t){return ({O:"Openness",C:"Conscientiousness",E:"Extraversion",A:"Agreeableness",N:"Neuroticism"})[t];}
+  function sideWord(trait,pct){
     const domRight = pct>=50;
-    switch(trait){
-      case "O": return domRight? "Open" : "Closed";
-      case "C": return domRight? "Conscientious" : "Spontaneous";
-      case "E": return domRight? "Extravert" : "Introvert";
-      case "A": return domRight? "Agreeable" : "Hostile";
-      case "N": return domRight? "Neurotic" : "Stable";
-    }
+    return {O:domRight?"Open":"Closed",C:domRight?"Conscientious":"Spontaneous",E:domRight?"Extravert":"Introvert",A:domRight?"Agreeable":"Hostile",N:domRight?"Neurotic":"Stable"}[trait];
   }
   function buildSubtitle(pct){
-    const strength = Object.fromEntries(Object.entries(pct).map(([k,v])=>[k, Math.max(v,100-v)]));
-    const order = Object.entries(strength).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
-    const topThree = order.slice(0,3);
-    const words = topThree.map(k=>sideWord(k, pct[k]));
-    const subtitle = `Top traits: ${topThree.map(k=>traitLabel(k)).join(", ")} (${words.join(" • ")})`;
-    return subtitle;
+    const strength = Object.fromEntries(Object.entries(pct).map(([k,v])=>[k,Math.max(v,100-v)]));
+    const order = Object.entries(strength).sort((a,b)=>b[1]-a[1]).map(([k])=>k).slice(0,3);
+    const words = order.map(k=>sideWord(k,pct[k]));
+    return `Top traits: ${order.map(traitLabel).join(", ")} (${words.join(" • ")})`;
+  }
+  function tier(x){if (x>=80) return "very high"; if (x>=60) return "high"; if (x>=40) return "moderate"; if (x>=20) return "low"; return "very low";}
+
+  function buildWhoHTML(pct){
+    const o=pct.O,c=pct.C,e=pct.E,a=pct.A,n=pct.N;
+    const lead = `You present as ${o>60?"curious and imaginative":o<40?"practical and grounded":"situationally curious"}, ${c>60?"organized and dependable":c<40?"flexible and easy-going":"steady and task-aware"}, ${e>60?"social and expressive":e<40?"quiet and reflective":"situationally social"}, ${a>60?"cooperative and considerate":a<40?"direct and candid":"thoughtful and fair"}, and ${n>60?"emotionally sensitive":n<40?"calm under pressure":"generally steady"}.`;
+    const lines={
+      O:(()=>{const t=tier(o); if(t==="very high")return"You enjoy design, experimentation, big ideas."; if(t==="high")return"You like variety and open-ended discussions."; if(t==="moderate")return"You balance creativity and practicality."; if(t==="low")return"You prefer proven, step-by-step methods."; return"You value reliable structure over novelty.";})(),
+      C:(()=>{const t=tier(c); if(t==="very high")return"You plan ahead and meet deadlines early."; if(t==="high")return"Checklists and routines help you deliver."; if(t==="moderate")return"You plan when needed and adapt when plans change."; if(t==="low")return"You work best with flexibility and short sprints."; return"You rely on spontaneity; simple systems boost output.";})(),
+      E:(()=>{const t=tier(e); if(t==="very high")return"Group work and presenting energize you."; if(t==="high")return"Discussion-based classes fit you well."; if(t==="moderate")return"You engage when it matters; enjoy solo focus too."; if(t==="low")return"You recharge alone; independent study suits you."; return"You prefer calm spaces and small groups.";})(),
+      A:(()=>{const t=tier(a); if(t==="very high")return"You listen well and support teammates."; if(t==="high")return"People find you collaborative and considerate."; if(t==="moderate")return"You balance kindness with candor."; if(t==="low")return"You're candid, principle-driven, valuing logic."; return"You're straightforward and independent; you speak up.";})(),
+      N:(()=>{const t=tier(n); if(t==="very high")return"You feel things strongly; breaks and reframing help."; if(t==="high")return"You're emotionally observant; stress tools help."; if(t==="moderate")return"Your mood is generally even."; if(t==="low")return"You're steady under pressure and anchor teams."; return"You stay calm in setbacks and recover quickly.";})()
+    };
+    const detailHTML = `<ul>
+      <li><strong>Openness ("O") — ${o}%:</strong> ${lines.O}</li>
+      <li><strong>Conscientiousness ("C") — ${c}%:</strong> ${lines.C}</li>
+      <li><strong>Extraversion ("E") — ${e}%:</strong> ${lines.E}</li>
+      <li><strong>Agreeableness ("A") — ${a}%:</strong> ${lines.A}</li>
+      <li><strong>Neuroticism ("N") — ${n}%:</strong> ${lines.N}</li>
+    </ul>`;
+    return {lead,detailHTML};
+  }
+  function buildGoodAt(pct){
+    const s=[];
+    (pct.O>=55)?s.push("creative problem-solving","seeing patterns and possibilities"):s.push("following clear procedures","learning with concrete examples");
+    (pct.C>=55)?s.push("planning and meeting deadlines","staying accountable"):s.push("adapting on the fly","handling unstructured tasks");
+    (pct.E>=55)?s.push("leading discussions","collaboration and networking"):s.push("focused individual work","deep concentration");
+    (pct.A>=55)?s.push("team harmony","customer/community service"):s.push("giving candid feedback","objective decisions");
+    (pct.N<45)?s.push("staying composed","bouncing back from setbacks"):s.push("empathizing with others’ feelings","noticing risks early");
+    return [...new Set(s)].slice(0,6).join("; ")+".";
+  }
+  function buildGrowth(pct){
+    const t=[]; if(pct.O>70)t.push("pair big ideas with small milestones"); if(pct.O<40)t.push("try new formats to expand creativity");
+    if(pct.C>70)t.push("allow room for flexibility and rest"); if(pct.C<40)t.push("use checklists and calendar reminders");
+    if(pct.E>70)t.push("schedule quiet focus blocks"); if(pct.E<40)t.push("practice sharing ideas early in groups");
+    if(pct.A>70)t.push("set boundaries and say no when needed"); if(pct.A<40)t.push("practice active listening before solving");
+    if(pct.N>60)t.push("use breathing or reframing when stressed"); if(pct.N<40)t.push("invite feedback on emotional cues");
+    return t.length?t.join("; ")+".":"Keep doing what works; iterate as you learn.";
+  }
+  function buildPrep(pct){
+    const p=[];
+    (pct.O>=55)?p.push("Join art/design, creative writing, or research clubs."):p.push("Focus on AP/CTE courses with clear skill progress.");
+    (pct.C>=55)?p.push("Take roles like project manager or treasurer."):p.push("Use planners; break assignments into mini-deadlines.");
+    (pct.E>=55)?p.push("Lead discussions, debate, or student council."):p.push("Try peer tutoring or independent research roles.");
+    (pct.A>=55)?p.push("Volunteer; mentor younger students."):p.push("Join build/robotics teams where direct feedback is valued.");
+    (pct.N>=55)?p.push("Practice stress tools (sleep plan, exercise, journaling)."):p.push("Support teammates during high-pressure weeks.");
+    return p.join(" ");
+  }
+  function buildCareers(pct){
+    const pools={
+      O:[{title:"UX Designer",why:"High openness fuels user-centered creativity.",salary:"$70K - $140K"},{title:"Film/Video Editor",why:"Story and experimentation blend.",salary:"$50K - $110K"},{title:"Research Scientist",why:"Curiosity drives discovery.",salary:"$75K - $160K"},{title:"Architect",why:"Conceptual design with impact.",salary:"$75K - $160K"},{title:"Writer/Author",why:"Ideas communicated creatively.",salary:"$50K - $110K"},{title:"Game Designer",why:"Inventive worlds and systems.",salary:"$70K - $150K"},{title:"Product Manager",why:"Vision turns into features.",salary:"$90K - $180K"},{title:"Marketing Strategist",why:"Novel campaigns and insights.",salary:"$70K - $150K"},{title:"Industrial Designer",why:"Blend function and form.",salary:"$65K - $135K"},{title:"Data Visualization Specialist",why:"Turn complex data into insight.",salary:"$80K - $150K"}],
+      C:[{title:"Accountant",why:"Organization and precision.",salary:"$60K - $130K"},{title:"Project Manager",why:"Plans, deadlines, delivery.",salary:"$80K - $160K"},{title:"Data Analyst",why:"Structured, consistent analysis.",salary:"$60K - $130K"},{title:"Operations Manager",why:"Process and reliability.",salary:"$80K - $160K"},{title:"Supply Chain Analyst",why:"Logistics and optimization.",salary:"$70K - $140K"},{title:"Civil Engineer",why:"Methodical problem-solving.",salary:"$80K - $160K"},{title:"Quality Assurance Specialist",why:"Standards and accuracy.",salary:"$60K - $120K"},{title:"Pharmacist Tech/Pharmacist*",why:"Protocol and safety.",salary:"$50K - $160K"},{title:"Financial Analyst",why:"Forecasting and discipline.",salary:"$70K - $140K"},{title:"Database Administrator",why:"Uptime and integrity.",salary:"$85K - $160K"}],
+      E:[{title:"Sales Representative",why:"Energy and persuasion.",salary:"$50K - $120K"},{title:"Event Planner",why:"People, pace, details.",salary:"$50K - $100K"},{title:"Public Relations Specialist",why:"Communication and networks.",salary:"$60K - $130K"},{title:"Talent Recruiter",why:"Outreach and relationships.",salary:"$60K - $120K"},{title:"Teacher",why:"Dynamic classroom leadership.",salary:"$50K - $100K"},{title:"Hospitality Manager",why:"Guest experience leadership.",salary:"$55K - $120K"},{title:"Entrepreneur",why:"Drive and visibility.",salary:"$80K - $200K"},{title:"Broadcast Presenter",why:"On-air presence.",salary:"$60K - $150K"},{title:"Real Estate Agent",why:"Client-facing, fast moving.",salary:"$50K - $150K+"},{title:"Account Executive (SaaS)",why:"Pipeline, demos, closing.",salary:"$70K - $200K+"}],
+      A:[{title:"Nurse",why:"Care and teamwork.",salary:"$60K - $120K"},{title:"Social Worker",why:"Advocacy and empathy.",salary:"$50K - $90K"},{title:"HR Specialist",why:"People support and fairness.",salary:"$60K - $120K"},{title:"Counselor/Therapist",why:"Guiding growth.",salary:"$50K - $120K"},{title:"User Support Specialist",why:"Helpful problem-solving.",salary:"$45K - $95K"},{title:"Nonprofit Coordinator",why:"Mission and cooperation.",salary:"$50K - $100K"},{title:"Customer Success Manager",why:"Relationship building.",salary:"$70K - $140K"},{title:"Dietitian",why:"Care plus science.",salary:"$60K - $110K"},{title:"Occupational Therapist",why:"Daily-living skill support.",salary:"$75K - $120K"},{title:"School Psychologist",why:"Student well-being.",salary:"$70K - $125K"}],
+      N:[{title:"Risk Analyst",why:"Sensitivity spots issues early.",salary:"$70K - $140K"},{title:"Compliance Officer",why:"Protects against pitfalls.",salary:"$70K - $140K"},{title:"Editor/Proofreader",why:"Attention to errors.",salary:"$50K - $110K"},{title:"Safety Coordinator",why:"Prevents incidents.",salary:"$55K - $110K"},{title:"Quality Control Tech",why:"Careful inspection.",salary:"$50K - $100K"},{title:"Policy Research Assistant",why:"Thorough review and nuance.",salary:"$55K - $110K"},{title:"Health & Safety Specialist",why:"Risk awareness in action.",salary:"$60K - $120K"},{title:"Insurance Underwriter",why:"Evaluates risk carefully.",salary:"$60K - $120K"},{title:"Forensic Accountant",why:"Detect and prevent fraud.",salary:"$70K - $140K"},{title:"Clinical Lab Technologist",why:"Precision and protocols.",salary:"$60K - $115K"}],
+      Calm:[{title:"EMT/Paramedic",why:"Steady in urgent situations.",salary:"$45K - $90K"},{title:"Software Developer",why:"Calm focus on complex tasks.",salary:"$80K - $170K"},{title:"Air Traffic Controller*",why:"Composure under pressure.",salary:"$90K - $180K"},{title:"Pilot",why:"Calm, procedural focus.",salary:"$80K - $200K"},{title:"Firefighter",why:"Presence under stress.",salary:"$50K - $110K"}]
+    };
+    const order = Object.entries(pct).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
+    let list=[]; const t1=order[0], t2=order[1];
+    list=list.concat(pools[t1]||[],pools[t2]||[]);
+    if(pct.N<=40) list=list.concat(pools.Calm); else list=list.concat(pools.N);
+    ["O","C","E","A","N"].forEach(t=>{if(t!==t1&&t!==t2) list=list.concat(pools[t]);});
+    const seen=new Set(), out=[];
+    for(const c of list){ if(!seen.has(c.title)){seen.add(c.title); out.push(c);} }
+    return out;
   }
 
-  // Results
-  document.getElementById('seeResults').addEventListener('click', () => {
-    const answers = document.querySelectorAll('input[type=radio]:checked');
-    if (answers.length < questions.length) return alert("Please answer all questions.");
-    const raw = {O:0, C:0, E:0, A:0, N:0};
-    answers.forEach(a => {
-      const val = a.value;
-      const trait = val[0];
-      const dir = val[1];
-      if (dir === '+') raw[trait] += 1;
+  // ===== See Results =====
+  document.getElementById('seeResults').addEventListener('click', ()=>{
+    const checked = qContainer.querySelectorAll('input[type=radio]:checked').length;
+    if(checked < total) return alert("Please answer all questions.");
+    const raw={O:0,C:0,E:0,A:0,N:0};
+    qContainer.querySelectorAll('input[type=radio]:checked').forEach(a=>{
+      const v=a.value; if(v[1]==='+') raw[v[0]]+=1;
     });
-
     const perTrait = 8;
-    const pct = {
-      O: Math.round((raw.O/perTrait)*100),
-      C: Math.round((raw.C/perTrait)*100),
-      E: Math.round((raw.E/perTrait)*100),
-      A: Math.round((raw.A/perTrait)*100),
-      N: Math.round((raw.N/perTrait)*100)
-    };
+    const pct = {O:Math.round(raw.O/perTrait*100),C:Math.round(raw.C/perTrait*100),E:Math.round(raw.E/perTrait*100),A:Math.round(raw.A/perTrait*100),N:Math.round(raw.N/perTrait*100)};
 
-    // Pair boxes—compute both sides and set dominance class
-    function setPair(leftPctId, rightPctId, leftBoxId, rightBoxId, rightValue){
+    // Pair boxes
+    function setPair(leftPctId,rightPctId,leftBoxId,rightBoxId,rightValue){
       const leftValue = 100 - rightValue;
       document.getElementById(leftPctId).textContent = leftValue + '%';
       document.getElementById(rightPctId).textContent = rightValue + '%';
-      const leftBox = document.getElementById(leftBoxId);
-      const rightBox = document.getElementById(rightBoxId);
-      leftBox.classList.remove('dominant'); rightBox.classList.remove('dominant');
-      if (rightValue >= leftValue) rightBox.classList.add('dominant');
-      else leftBox.classList.add('dominant');
+      const L=document.getElementById(leftBoxId), R=document.getElementById(rightBoxId);
+      L.classList.remove('dominant'); R.classList.remove('dominant');
+      (rightValue>=leftValue?R:L).classList.add('dominant');
     }
-
     setPair('pctClosed','pctOpen','boxClosed','boxOpen',pct.O);
     setPair('pctSpont','pctConsci','boxSpont','boxConsci',pct.C);
     setPair('pctIntro','pctExtra','boxIntro','boxExtra',pct.E);
     setPair('pctHostile','pctAgree','boxHostile','boxAgree',pct.A);
     setPair('pctStable','pctNeuro','boxStable','boxNeuro',pct.N);
 
-    // Heading: fixed title + dynamic subtitle
     document.getElementById('profileTitle').textContent = 'OCEAN Profile Results';
     document.getElementById('profileSubTitle').textContent = buildSubtitle(pct);
 
-    // Narrative & tables
     const who = buildWhoHTML(pct);
     document.getElementById('summaryLead').textContent = who.lead;
     document.getElementById('who').innerHTML = who.detailHTML;
@@ -484,204 +466,65 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('prep').textContent = buildPrep(pct);
 
     const careers = buildCareers(pct).slice(0,25);
-    document.getElementById('careers-tbody').innerHTML = careers.map(c => `<tr><td><strong>${c.title}</strong></td><td>${c.why}</td><td>${c.salary}</td></tr>`).join('');
+    document.getElementById('careers-tbody').innerHTML = careers.map(c=>`<tr><td><strong>${c.title}</strong></td><td>${c.why}</td><td>${c.salary}</td></tr>`).join('');
 
-    // Show results
     const studentName = document.getElementById('studentName').value || 'Student';
     const reportDate = document.getElementById('reportDate').value || new Date().toLocaleDateString();
     document.getElementById('printName').textContent = `Student: ${studentName}`;
     document.getElementById('printDate').textContent = `Date: ${reportDate}`;
 
-    document.getElementById('questions-section').style.display = 'none';
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('postActions').style.display = 'flex';
+    document.getElementById('questions-section').style.display='none';
+    document.getElementById('results').style.display='block';
+    document.getElementById('postActions').style.display='flex';
     document.getElementById('results').scrollIntoView({behavior:'smooth'});
   });
 
-  // Review Questions
-  document.getElementById('reviewQuestions').addEventListener('click', () => {
-    document.getElementById('results').style.display = 'none';
-    document.getElementById('questions-section').style.display = 'block';
-    refreshSelectionsAndProgress();
+  // ===== Review Questions (keeps counter live) =====
+  document.getElementById('reviewQuestions').addEventListener('click', ()=>{
+    document.getElementById('results').style.display='none';
+    document.getElementById('postActions').style.display='none';
+    document.getElementById('questions-section').style.display='block';
+    updateProgress();
     document.getElementById('questions-section').scrollIntoView({behavior:'smooth'});
   });
 
-  /* ===== Personalization helpers ===== */
-  function tier(x){if (x>=80) return "very high"; if (x>=60) return "high"; if (x>=40) return "moderate"; if (x>=20) return "low"; return "very low";}
-
-  function buildWhoHTML(pct){
-    const o = pct.O, c = pct.C, e = pct.E, a = pct.A, n = pct.N;
-    const lead = `You present as ${o>60?"curious and imaginative":o<40?"practical and grounded":"situationally curious"}, ${c>60?"organized and dependable":c<40?"flexible and easy-going":"steady and task-aware"}, ${e>60?"social and expressive":e<40?"quiet and reflective":"situationally social"}, ${a>60?"cooperative and considerate":a<40?"direct and candid":"thoughtful and fair"}, and ${n>60?"emotionally sensitive":n<40?"calm under pressure":"generally steady"}.`;
-    const lines = {
-      O: (()=>{const t=tier(o); if(t==="very high")return"You seek novelty and enjoy electives with design, experimentation, or big ideas."; if(t==="high")return"You like variety and discussions with room to explore."; if(t==="moderate")return"You balance creativity with practicality."; if(t==="low")return"You prefer proven methods with clear steps and examples."; return"You value reliable structure over novelty.";})(),
-      C: (()=>{const t=tier(c); if(t==="very high")return"You plan ahead, meet deadlines early, and notice details others miss."; if(t==="high")return"Checklists and routines help you deliver consistent work."; if(t==="moderate")return"You can plan when needed and adapt when plans change."; if(t==="low")return"You work best with flexibility and short sprints with reminders."; return"You rely on spontaneity; simple systems will multiply results.";})(),
-      E: (()=>{const t=tier(e); if(t==="very high")return"Group work and presenting feel natural and energizing."; if(t==="high")return"Discussion-based classes and clubs fit you well."; if(t==="moderate")return"You engage when it matters and enjoy solo focus too."; if(t==="low")return"You recharge alone; independent study suits you."; return"You prefer calm environments and small groups.";})(),
-      A: (()=>{const t=tier(a); if(t==="very high")return"You listen well, mediate conflicts, and support teammates."; if(t==="high")return"People find you collaborative and considerate."; if(t==="moderate")return"You balance kindness with candor."; if(t==="low")return"You're candid and principle-driven, valuing clear logic."; return"You're straightforward and independent; you speak up when it counts.";})(),
-      N: (()=>{const t=tier(n); if(t==="very high")return"You feel things strongly; breaks and reframing help you stay centered."; if(t==="high")return"You're emotionally observant; stress tools keep you steady."; if(t==="moderate")return"Your mood is generally even."; if(t==="low")return"You're steady under pressure and can anchor teams."; return"You stay very calm in setbacks and recover quickly.";})()
-    };
-    const detailHTML = [`<ul>`,
-      `<li><strong>Openness ("O") — ${o}%:</strong> ${lines.O}</li>`,
-      `<li><strong>Conscientiousness ("C") — ${c}%:</strong> ${lines.C}</li>`,
-      `<li><strong>Extraversion ("E") — ${e}%:</strong> ${lines.E}</li>`,
-      `<li><strong>Agreeableness ("A") — ${a}%:</strong> ${lines.A}</li>`,
-      `<li><strong>Neuroticism ("N") — ${n}%:</strong> ${lines.N}</li>`,
-      `</ul>`].join("");
-    return {lead, detailHTML};
-  }
-
-  function buildGoodAt(pct){
-    const skills = [];
-    if (pct.O>=55) skills.push("creative problem-solving","seeing patterns and possibilities");
-    else skills.push("following clear procedures","learning with concrete examples");
-    if (pct.C>=55) skills.push("planning and meeting deadlines","staying accountable");
-    else skills.push("adapting on the fly","handling unstructured tasks");
-    if (pct.E>=55) skills.push("leading discussions","networking and collaboration");
-    else skills.push("focused individual work","deep concentration");
-    if (pct.A>=55) skills.push("team harmony","customer/community service");
-    else skills.push("giving candid feedback","objective decision-making");
-    if (pct.N<45) skills.push("staying composed","bouncing back from setbacks");
-    else skills.push("empathizing with others’ feelings","noticing risks early");
-    return [...new Set(skills)].slice(0,6).join("; ") + ".";
-  }
-
-  function buildGrowth(pct){
-    const tips=[];
-    if (pct.O>70) tips.push("pair big ideas with small milestones");
-    if (pct.O<40) tips.push("try new formats to expand creativity");
-    if (pct.C>70) tips.push("allow room for flexibility and rest");
-    if (pct.C<40) tips.push("use checklists and calendar reminders");
-    if (pct.E>70) tips.push("schedule quiet focus blocks");
-    if (pct.E<40) tips.push("practice sharing ideas early in groups");
-    if (pct.A>70) tips.push("set boundaries and say no when needed");
-    if (pct.A<40) tips.push("practice active listening before solving");
-    if (pct.N>60) tips.push("use breathing or reframing when stressed");
-    if (pct.N<40) tips.push("invite feedback on emotional cues");
-    return tips.length?tips.join("; ")+".":"Keep doing what works; iterate as you learn.";
-  }
-
-  function buildPrep(pct){
-    const parts=[];
-    if (pct.O>=55) parts.push("Join art/design, creative writing, or research clubs.");
-    else parts.push("Focus on AP/CTE courses with clear skill progress.");
-    if (pct.C>=55) parts.push("Take on roles like project manager or treasurer.");
-    else parts.push("Use planners; break assignments into mini-deadlines.");
-    if (pct.E>=55) parts.push("Lead discussions, debate, or student council.");
-    else parts.push("Try peer tutoring or independent research roles.");
-    if (pct.A>=55) parts.push("Volunteer/community service; mentor younger students.");
-    else parts.push("Join build/robotics teams where direct feedback is valued.");
-    if (pct.N>=55) parts.push("Practice stress tools (sleep plan, exercise, journaling).");
-    else parts.push("Support teammates during high-pressure weeks.");
-    return parts.join(" ");
-  }
-
-  function buildCareers(pct){
-    const pools = {
-      O:[
-        {title:"UX Designer",why:"High openness fuels user-centered creativity.",salary:"$70K - $140K"},
-        {title:"Film/Video Editor",why:"Story and experimentation blend.",salary:"$50K - $110K"},
-        {title:"Research Scientist",why:"Curiosity drives discovery.",salary:"$75K - $160K"},
-        {title:"Architect",why:"Conceptual design with real impact.",salary:"$75K - $160K"},
-        {title:"Writer/Author",why:"Ideas communicated creatively.",salary:"$50K - $110K"},
-        {title:"Game Designer",why:"Inventive worlds and systems.",salary:"$70K - $150K"},
-        {title:"Product Manager",why:"Vision turns into features.",salary:"$90K - $180K"},
-        {title:"Marketing Strategist",why:"Novel campaigns and insights.",salary:"$70K - $150K"},
-        {title:"Industrial Designer",why:"Blend function and form.",salary:"$65K - $135K"},
-        {title:"Data Visualization Specialist",why:"Turn complex data into insight.",salary:"$80K - $150K"}
-      ],
-      C:[
-        {title:"Accountant",why:"Organization and precision.",salary:"$60K - $130K"},
-        {title:"Project Manager",why:"Plans, deadlines, delivery.",salary:"$80K - $160K"},
-        {title:"Data Analyst",why:"Structured, consistent analysis.",salary:"$60K - $130K"},
-        {title:"Operations Manager",why:"Process and reliability.",salary:"$80K - $160K"},
-        {title:"Supply Chain Analyst",why:"Logistics and optimization.",salary:"$70K - $140K"},
-        {title:"Civil Engineer",why:"Methodical problem-solving.",salary:"$80K - $160K"},
-        {title:"Quality Assurance Specialist",why:"Standards and accuracy.",salary:"$60K - $120K"},
-        {title:"Pharmacist Tech/Pharmacist*",why:"Protocol and safety.",salary:"$50K - $160K"},
-        {title:"Financial Analyst",why:"Forecasting and discipline.",salary:"$70K - $140K"},
-        {title:"Database Administrator",why:"Uptime and data integrity.",salary:"$85K - $160K"}
-      ],
-      E:[
-        {title:"Sales Representative",why:"Energy and persuasion.",salary:"$50K - $120K"},
-        {title:"Event Planner",why:"People, pace, and details.",salary:"$50K - $100K"},
-        {title:"Public Relations Specialist",why:"Communication and networks.",salary:"$60K - $130K"},
-        {title:"Talent Recruiter",why:"Outreach and relationships.",salary:"$60K - $120K"},
-        {title:"Teacher",why:"Leading classrooms dynamically.",salary:"$50K - $100K"},
-        {title:"Hospitality Manager",why:"Guest experience leadership.",salary:"$55K - $120K"},
-        {title:"Entrepreneur",why:"Drive and visibility.",salary:"$80K - $200K"},
-        {title:"Broadcast Presenter",why:"On-air presence.",salary:"$60K - $150K"},
-        {title:"Real Estate Agent",why:"Client-facing, fast moving.",salary:"$50K - $150K+"},
-        {title:"Account Executive (SaaS)",why:"Pipeline, demos, closing.",salary:"$70K - $200K+"}
-      ],
-      A:[
-        {title:"Nurse",why:"High care and teamwork.",salary:"$60K - $120K"},
-        {title:"Social Worker",why:"Advocacy and empathy.",salary:"$50K - $90K"},
-        {title:"HR Specialist",why:"People support and fairness.",salary:"$60K - $120K"},
-        {title:"Counselor/Therapist",why:"Guiding growth.",salary:"$50K - $120K"},
-        {title:"User Support Specialist",why:"Helpful problem-solving.",salary:"$45K - $95K"},
-        {title:"Nonprofit Coordinator",why:"Mission and cooperation.",salary:"$50K - $100K"},
-        {title:"Customer Success Manager",why:"Relationship building.",salary:"$70K - $140K"},
-        {title:"Dietitian",why:"Care plus science.",salary:"$60K - $110K"},
-        {title:"Occupational Therapist",why:"Daily‑living skill support.",salary:"$75K - $120K"},
-        {title:"School Psychologist",why:"Student well‑being.",salary:"$70K - $125K"}
-      ],
-      N:[
-        {title:"Risk Analyst",why:"Sensitivity spots issues early.",salary:"$70K - $140K"},
-        {title:"Compliance Officer",why:"Protects against pitfalls.",salary:"$70K - $140K"},
-        {title:"Editor/Proofreader",why:"Attention to errors.",salary:"$50K - $110K"},
-        {title:"Safety Coordinator",why:"Prevents incidents.",salary:"$55K - $110K"},
-        {title:"Quality Control Tech",why:"Careful inspection.",salary:"$50K - $100K"},
-        {title:"Policy Research Assistant",why:"Thorough review and nuance.",salary:"$55K - $110K"},
-        {title:"Health & Safety Specialist",why:"Risk awareness in action.",salary:"$60K - $120K"},
-        {title:"Insurance Underwriter",why:"Evaluates risk carefully.",salary:"$60K - $120K"},
-        {title:"Forensic Accountant",why:"Detect and prevent fraud.",salary:"$70K - $140K"},
-        {title:"Clinical Lab Technologist",why:"Precision and protocols.",salary:"$60K - $115K"}
-      ],
-      Calm:[
-        {title:"EMT/Paramedic",why:"Steady in urgent situations.",salary:"$45K - $90K"},
-        {title:"Software Developer",why:"Calm focus on complex tasks.",salary:"$80K - $170K"},
-        {title:"Air Traffic Controller*",why:"Composure under pressure.",salary:"$90K - $180K"},
-        {title:"Pilot",why:"Calm, procedural focus.",salary:"$80K - $200K"},
-        {title:"Firefighter",why:"Presence under stress.",salary:"$50K - $110K"}
-      ]
-    };
-    const order = Object.entries(pct).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
-    let list = [];
-    const t1 = order[0], t2 = order[1];
-    list = list.concat(pools[t1]||[], pools[t2]||[]);
-    if (pct.N<=40) list = list.concat(pools.Calm);
-    else list = list.concat(pools.N);
-    ["O","C","E","A","N"].forEach(t=>{ if(t!==t1 && t!==t2) list = list.concat(pools[t]); });
-    const seen = new Set();
-    const out = [];
-    for (const c of list){
-      if (!seen.has(c.title)){ seen.add(c.title); out.push(c); }
-    }
-    return out;
-  }
-
-  // Print
-  document.getElementById('savePdf').addEventListener('click', () => {
+  // ===== Save PDF =====
+  document.getElementById('savePdf').addEventListener('click', ()=>{
     const name = document.getElementById('studentName').value || 'Student';
-    if (!name.trim()) alert('Please enter student name before printing!');
+    if(!name.trim()) alert('Please enter student name before printing!');
     else window.print();
   });
 
+  // ===== Exit: clear & try to close =====
+  document.getElementById('exitApp').addEventListener('click', ()=>{
+    if(!confirm('Exit and clear all answers?')) return;
+    document.getElementById('quizForm').reset();
+    qContainer.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+    document.getElementById('results').style.display='none';
+    document.getElementById('postActions').style.display='none';
+    document.getElementById('questions-section').style.display='block';
+    document.getElementById('studentName').value='';
+    document.getElementById('reportDate').value = new Date().toLocaleDateString();
+    updateProgress(); // back to 0 of N
+
+    try{ window.close(); }catch(_){}
+    setTimeout(()=>{ try{window.open('','_self');window.close();}catch(_){} try{window.location.href='about:blank';}catch(_){} },50);
+  });
+
+  // init date
   document.getElementById('reportDate').value = new Date().toLocaleDateString();
 });
 
-// iOS-friendly smooth scroll after tapping "See Results"
-try {
-  document.getElementById('seeResults')?.addEventListener('click', () => {
-    setTimeout(() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+// smooth scroll after See Results (iOS-friendly)
+try{
+  document.getElementById('seeResults')?.addEventListener('click',()=>{
+    setTimeout(()=>document.getElementById('results')?.scrollIntoView({behavior:'smooth',block:'start'}),50);
   });
-
-  // Prevent iOS from auto-scrolling inputs under the keyboard awkwardly
-  ;['studentName','reportDate'].forEach(id=>{
-    const el = document.getElementById(id);
-    el && el.addEventListener('focus', ()=> el.scrollIntoView({behavior:'smooth', block:'center'}));
+  ['studentName','reportDate'].forEach(id=>{
+    const el=document.getElementById(id);
+    el&&el.addEventListener('focus',()=>el.scrollIntoView({behavior:'smooth',block:'center'}));
   });
-} catch(_) {}
-
+}catch(_){}
 </script>
 </body>
-</html>
+</html
