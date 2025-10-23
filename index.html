@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -211,8 +212,8 @@ input, select, textarea, button {
   <div class="card">
     <div class="header-row">
       <div>
-        <div class="brand">Student Career Assessment</div>
-        <div style="color:var(--muted);font-size:0.95rem"><span id="subtitleCount">40</span>-question “Big Five” (OCEAN) — printable report</div>
+        <div class="brand">Career Assessment</div>
+        <div style="color:var(--muted);font-size:0.95rem"><span id="subtitleCount">40</span>-question “Big Five” (OCEAN) </div>
       </div>
       <div class="meta">Student: <input id="studentName" placeholder="(Student name)" /> Date: <input id="reportDate" /></div>
     </div>
@@ -237,7 +238,7 @@ input, select, textarea, button {
       <div class="report-header">
         <div class="type-box">
           <h2 class="type" id="profileTitle">OCEAN Profile Results</h2>
-          <p class="title" id="profileSubTitle">Top traits: …</p>
+           <p class="title" id="profileSubTitle">Top traits: …</p>
         </div>
         <p class="report-sub" id="summaryLead"></p>
       </div>
@@ -452,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const order = Object.entries(strength).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
     const topThree = order.slice(0,3);
     const words = topThree.map(k=>sideWord(k, pct[k]));
-    const subtitle = `Top traits: ${topThree.map(k=>traitLabel(k)).join(", ")} (${words.join(" • ")})`;
+    const subtitle = ` ${topThree.map(k=>traitLabel(k)).join(", ")} (${words.join(" • ")})`;
     return subtitle;
   }
 
@@ -708,3 +709,4 @@ try {
 
 </script>
 </body>
+</html>
